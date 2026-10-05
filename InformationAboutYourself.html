@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles/style.css"/>
+  <title>chi</title>
+</head>
+<body>
+
+  <h1>Information About Yourself</h1>
+  <form id="profileForm">
+    <label>First Name:</label><br>
+    <input type="text" id="firstName" value="Venice Ashley"><br><br>
+
+    <label>Last Name:</label><br>
+    <input type="text" id="lastName" value="Sarmiento"><br><br>
+
+    <label>Age:</label><br>
+    <input type="number" id="age" value="19"><br><br>
+
+    <label>Year & Section:</label><br>
+    <input type="text" id="yearAndSection" value="2 IT-3"><br><br>
+
+    <label>Address:</label><br>
+    <input type="text" id="address" value="Barangay Looc, Calamba, Laguna"><br><br>
+
+    <label>Program:</label><br>
+    <input type="text" id="program" value="BSIT"><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" id="email" value="vdsarmiento@ccc.edu.ph"><br><br>
+
+    <label>Hobby:</label><br>
+    <input type="text" id="hobby" value="Drawing"><br><br>
+
+    <label>Favorite Color:</label><br>
+    <input type="text" id="favoriteColor" value="Blue"><br><br>
+
+    <label>Favorite Food:</label><br>
+    <input type="text" id="favoriteFood" value="Buldak"><br><br>
+
+    <button type="button" onclick="processForm()">Submit</button>
+  </form>
+
+  <h2>Your Information</h2>
+  <div id="info"></div>
+
+  <script>
+    function processForm() {
+      let me = {
+        firstName: "Venice Ashley",
+        lastName: "Sarmiento",
+        age: 19,
+        yearAndSection: "2 IT-3",
+        address: "Barangay Looc, Calamba, Laguna",
+        program: "BSIT",
+        email: "vdsarmiento@ccc.edu.ph",
+        hobby: "Drawing",
+        favoriteColor: "Blue",
+        favoriteFood: "Buldak"
+      };
+
+      delete me.favoriteColor;
+      delete me.favoriteFood;
+
+      document.getElementById("info").innerHTML = 
+      "<p>First Name: " + me.firstName + "</p>" +
+      "<p>Last Name: " + me.lastName + "</p>" +
+      "<p>Age: " + me.age + "</p>" +
+      "<p>Year & Section: " + me.yearAndSection + "</p>" +
+      "<p>Address: " + me.address + "</p>" +
+      "<p>Program: " + me.program + "</p>" +
+      "<p>Email: " + me.email + "</p>" +
+      "<p>Hobby: " + me.hobby + "</p>" + 
+      "<p>Favorite Color: " + me.favoriteColor + "</p>" +
+      "<p>Favorite Food: " + me.favoriteFood + "</p>";
+    }
+  </script>
+
+</body>
+</html>

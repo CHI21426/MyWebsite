@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="styles/style.css"/>
+	
+    <title>Student Information System</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 2px;
+            padding: 2px;
+            font-family: Arial, Georgia, sans-serif;
+        }
+        body {
+            background-color: #E2DACD;
+            background-image: url("BlueLace.jfif");
+            background-repeat: repeat-x;
+            background-position: top;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+			background-color: #314152;
+            width: 100%;
+            color: White;
+            text-align: center;
+            padding: 15px 0 25px 0;
+        }
+        header h1 {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        header p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        studentRecords {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px 0;
+        }
+        .card {
+            background-color: rgba(147, 140, 130, 0.075);
+            border-radius: 6px;
+            padding: 30px;
+        }
+        .card h2 {
+            font-size: 20px;
+            color: Black;
+            margin-bottom: 6px;
+        }
+        .card p.description {
+            font-size: 13px;
+            color: Black;
+            margin-bottom: 20px;
+        }
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13px;
+        }
+        /* Heading Lists */
+        th {
+            background-color: #314152;
+            color: #737979;
+            font-weight: bold;
+            padding: 12px 15px;
+            border-bottom: 2px solid #42180D;
+        }
+        /* Lists */
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid Gray;
+            color: #455461;
+        }
+        tbody {
+            background-color: #red;
+        }
+        footer {
+            margin-top: auto;
+            padding: 15px 0 25px 0;
+            font-size: 12px;
+            color: Black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Information System</h1>
+        <p>Web Design and Programming</p>
+    </header>
+    
+    <studentRecords>
+        <div class="card">
+            <h2>Student Records</h2>
+            <p class="description">This is the list of students with their final standing.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Student Name</th>
+                        <th>Course</th>
+                        <th>Year Level</th>
+                        <th>Grade</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td>Aayne G. Miras</td>
+                        <td>BS Information Technology</td>
+                        <td>1st Year</td>
+                        <td>92</td>
+                        <td>Passed</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2.</td>
+                        <td>Eufronio P. Palmines</td>
+                        <td>BS Information Technology</td>
+                        <td>1st Year</td>
+                        <td>87</td>
+                        <td>Passed</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>3.</td>
+                        <td>Jon Philip R. Dalubasa</td>
+                        <td>BS Computer Science</td>
+                        <td>2nd Year</td>
+                        <td>95</td>
+                        <td>Passed</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>4.</td>
+                        <td>Arnold F. Cabatug</td>
+                        <td>BS Information Technology</td>
+                        <td>2nd Year</td>
+                        <td>68</td>
+                        <td>Failed</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>5.</td>
+                        <td>Edvin B. De Los Reyes</td>
+                        <td>BS Computer Science</td>
+                        <td>3rd Year</td>
+                        <td>78</td>
+                        <td>Passed</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </studentRecords>
+
+    <footer>
+        Venice Ashley D. Sarmiento - IT Professor
+    </footer>
+
+</body>
+</html>

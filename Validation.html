@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Validation</title>
+  
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #748B91;
+    margin: 0;
+    padding: 20px;
+  }
+  .form-container {
+    background-color: #C1D1CF;
+    width: 350px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 2px solid #636467;
+    border-radius: 8px;
+  }
+  h2 {
+    text-align: center;
+    color: #171F22;
+    margin-top: 0;
+  }
+  .input-group {
+    margin-bottom: 15px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #171F22;
+  }
+  input[type="text"],
+  input[type="tel"],
+  input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 2px solid #636467;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  /* When user input is INVALID */
+  .border-red {
+    border-color: red !important;
+  }
+  /* When user input is VALID */
+  .border-green {
+    border-color: green !important;
+  }
+  /* Error comment */
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+  }
+  input[type="submit"] {
+    width: 100%;
+    background-color: #666B64; 
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover {
+    background-color: #666B64;
+  }
+  /* Top message banner */
+  #status-message {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    
+    <h2>Create Account</h2>
+    <div id="status-message"></div>
+    
+    <!-- HTML Form Tag -->
+    <form id="signupForm" action="#" method="POST">
+      
+      <div class="input-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" 
+          placeholder="Alphanumberic (4 to 12 characters)">
+        <div id="username-error" class="error-message">
+          Must be 4 to 12 characters, and only contain letters and numbers.
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="09XXXXXXXX">
+        <div id="phone-error" class="error-message">
+          Phone number must be exactly 10 digits.
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" 
+          placeholder="Minimum of 8 characters (Letters & Numbers)">
+        <div id="password-error" class="error-message">
+          Minimum of 8 characters, at least 1 letter and 1 number.
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" 
+          placeholder="Re-enter your password">
+        <div id="confirmPassword-error" class="error-message">
+          Passwords do not match.
+        </div>
+      </div>
+      
+      <input type="submit" value="Sign Up">
+      
+    </form>
+  </div>
+  
+  <script>
+  var form = document.getElementById('signupForm');
+  var usernameInput = document.getElementById('username');
+  var phoneInput = document.getElementById('phone');
+  var passwordInput = document.getElementById('password');
+  var confirmPasswordInput = document.getElementById('confirmPassword');
+  var statusMessage = document.getElementById('status-message');
+  
+  // Red border & Green border
+  function setFieldState(inputElement, errorElement, isValid) {
+    if (isValid) {
+      // Input is valid
+      inputElement.className = "border-green";
+      errorElement.style.display = "none";
+    } else {
+      // Input is invalid
+      inputElement.className = "border-red";
+      errorElement.style.display = "block";
+    }
+  }
+  
+  // Username (alphanumeric, 4 to 12 characters)
+  function validateUsername() {
+    var value = usernameInput.value;
+    var errorElement = document.getElementById('username-error');
+    var pattern = /^[a-zA-Z0-9]{4,12}$/;
+    var isValid = pattern.test(value);
+    
+    setFieldState(usernameInput, errorElement, isValid);
+    return isValid;
+  }
+  
+  // Phone Number (10 digits)
+  function validatePhone() {
+    var value = phoneInput.value;
+    var errorElement = document.getElementById('phone-error');
+    var pattern = /^[0-9]{10}$/;
+    var isValid = pattern.test(value);
+    
+    setFieldState(phoneInput, errorElement, isValid);
+    return isValid;
+  }
+  
+  // Password (min 8 chars, 1 letter & 1 number)
+  function validatePassword() {
+    var value = passwordInput.value;
+    var errorElement = document.getElementById('password-error');
+    var pattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+    var isValid = pattern.test(value);
+    
+    setFieldState(passwordInput, errorElement, isValid);
+    return isValid;
+  }
+  
+  // Confirm Password (must match Password)
+  function validateConfirmPassword() {
+    var passValue = passwordInput.value;
+    var confirmValue = confirmPasswordInput.value;
+    var errorElement = document.getElementById('confirmPassword-error');
+    
+    var isValid = (confirmValue !== "") && (confirmValue === passValue);
+    setFieldState(confirmPasswordInput, errorElement, isValid);
+    return isValid;
+  }
+ 
+  usernameInput.addEventListener('input', validateUsername);
+  phoneInput.addEventListener('input', validatePhone);
+  passwordInput.addEventListener('input', validatePassword);
+  confirmPasswordInput.addEventListener('input', validateConfirmPassword);
+  
+  // Handling form submit button
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+   
+    var isUsernameValid = validateUsername();
+    var isPhoneValid = validatePhone();
+    var isPasswordValid = validatePassword();
+    var isConfirmValid = validateConfirmPassword();
+    
+    // Check if inputs are valid
+    if (isUsernameValid && isPhoneValid && isPasswordValid && isConfirmValid) {
+      statusMessage.style.color = "green";
+      statusMessage.innerHTML = "Success! Account Created.";
+    } else {
+      statusMessage.style.color = "red";
+      statusMessage.innerHTML = "Please fix the errors below.";
+    }
+  });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Website</title>
+    <style>
+	* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "Times New Roman", Georgia, sans-serif;
+	}
+	body {
+	background-color: #ebd8dc; 
+	color: #9fb3c4;
+	line-height: 1.6;
+	}
+	header {
+	background-color: #dbd3dc; 
+	padding: 20px 40px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid #dbd3dc;
+	}
+	.logo {
+	font-size: 30px;
+	font-weight: bold;
+	}
+	.logo1 {
+	color: #c9b3c9; 
+	}
+	.logo2 {
+	color: #f5ebc8; 
+	}
+	nav a {
+	color: white; 
+	text-decoration: none;
+	margin-left: 20px;
+	font-weight: bold;
+	font-size: 15px;
+	cursor: pointer;
+	}
+	nav a:hover, nav a.active {
+	color: white;
+	border-bottom: 2px solid #f6f1ec;
+	padding-bottom: 4px;
+	}
+	main {
+	max-width: 1100px;
+	margin: 40px auto;
+	padding: 0 20px;
+	min-height: 70vh;
+	}
+	
+	
+	/* Next Page */
+	.page-section {
+	display: none;
+	}
+	.page-section.active {
+	display: block;
+	}
+	
+	
+	/* Heading Style */
+	h1 {
+	font-size: 36px;
+	margin-bottom: 10px;
+	}
+	h2 {
+	font-size: 24px;
+	margin-bottom: 15px;
+	}
+	p {
+	color: gray;
+	margin-bottom: 15px;
+	}
+
+
+	/* Home */
+	.home-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 40px;
+	flex-wrap: wrap;
+	padding: 20px 0;
+	}
+	.home-text {
+	flex: 1;
+	min-width: 300px;
+	}
+	.sub-title {
+	color: #6a4f6a; 
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	margin-bottom: 10px;
+	}
+	.home-text h1 {
+	font-size: 44px;
+	line-height: 1.2;
+	margin-bottom: 20px;
+	}
+	.btn-group {
+	margin-top: 25px;
+	}
+	.btn {
+	display: inline-block;
+	padding: 12px 25px;
+	border-radius: 25px;
+	font-weight: bold;
+	text-decoration: none;
+	cursor: pointer;
+	border: none;
+	margin-right: 10px;
+	margin-bottom: 15px;
+	font-size: 14px;
+	}
+	.btn-pink {
+	background-color: #dde5dc;
+	color: #ffffff;
+	}
+	.btn-pink:hover {
+	background-color: #dbd3dc;
+	}
+	.btn-outline {
+	background-color: transparent;
+	color: white;
+	border: 1px solid #d9a7a7;
+	}
+	.btn-outline:hover {
+	border-color: #f5ebc8;
+	}
+	.profile-img-frame {
+	width: 280px;
+	height: 280px;
+	border-radius: 50%;
+	border: 4px solid #c9b3c9;
+	overflow: hidden;
+	background-color: #c9b3c9;
+	}
+	.profile-img-frame img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	}
+
+
+	/* About Me */
+	.about-grid {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	margin-top: 20px;
+	}
+	.card {
+	background-color: #dde5dc;
+	border-radius: 12px;
+	padding: 30px;
+	flex: 1;
+	min-width: 300px;
+	}
+	.card-pink-title {
+	color: #caaba9;
+	}
+	.card-cyan-title {
+	color: #caaba9;
+	}
+	.skills-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 15px;
+	}
+	.skill-tag {
+	background-color: #f6f1ec;
+	color: #98869d;
+	border: 1px solid #d8c8d3;
+	padding: 8px 16px;
+	border-radius: 20px;
+	font-size: 13px;
+	}
+
+
+	/* Portfolio */
+	.portfolio-grid {
+	width: 350px;
+	height: 200px;
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	margin-top: 20px;
+	}
+	.portfolio-card {
+	background-color: #f5e4e1;
+	border-radius: 12px;
+	overflow: hidden;
+	flex: 1;
+	min-width: 280px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	}
+	.portfolio-img {
+	width: 100%;
+	height: 100px;
+	object-fit: cover;
+	}
+	.portfolio-content {
+	padding: 20px;
+	}
+	.portfolio-content h3 {
+	margin-bottom: 10px;
+	color: #b7c4b3;
+	}
+
+
+	/* Gallery */
+	.gallery-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));            
+	gap: 20px;
+	margin-top: 20px;
+	}
+	.gallery-item {
+	border: 1px solid #6a4f6a;
+	border-radius: 12px;
+	overflow: hidden;
+	height: 220px;
+	}
+	.gallery-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	}
+	
+	
+	/* Contact form */
+	.contact-form {
+	background-color: #dfd2eb;
+	border: 1px solid #a97cd2;
+	border-radius: 12px;
+	padding: 30px;
+	max-width: 600px;
+	margin: 20px auto 0 auto;
+	}
+	.form-group {
+	margin-bottom: 18px;
+	}
+	.form-group label {
+	display: block;
+	margin-bottom: 6px;
+	font-size: 13px;
+	color: #6a4f6a;
+	}
+	.form-group input,
+	.form-group textarea {
+	width: 100%;
+	padding: 12px;
+	background-color: #f6f1ec;
+	border: 1px solid #6a4f6a;
+	border-radius: 8px;
+	color: #6a4f6a;
+	font-size: 14px;
+	}
+	.form-group input:focus,
+	.form-group textarea:focus {
+	outline: none;
+	border-color: #ebd8dc;
+	}
+	.form-btn {
+	width: 100%;
+	padding: 12px;
+	background-color: #fef6db;
+	color: #e0a2a2;
+	border: none;
+	border-radius: 25px;
+	font-weight: bold;
+	cursor: pointer;
+	font-size: 15px;
+	}
+	.form-btn:hover {
+	background-color: #fee9b7;
+	}
+	
+	
+	/* Footer */
+	footer {
+	background-color: #dbd3dc;
+	text-align: center;
+	padding: 20px;
+	border-top: 1px solid #dbd3dc;
+	color: #6a4f6a;
+	font-size: 13px;
+	margin-top: 40px;
+	}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <span class="logo1">Te</span><span class="logo2">CHi</span>
+        </div>
+        <nav>
+            <a id="nav-home" class="active" onclick="showPage('home')">Home</a>
+            <a id="nav-about" onclick="showPage('about')">About Me</a>
+            <a id="nav-portfolio" onclick="showPage('portfolio')">Portfolio</a>
+            <a id="nav-gallery" onclick="showPage('gallery')">Gallery</a>
+            <a id="nav-contact" onclick="showPage('contact')">Contact</a>
+        </nav>
+    </header>
+
+    <main>  <!-- HOME PAGE -->
+	<section id="page-home" class="page-section active">
+            <div class="home-container">
+                <div class="home-text">
+                    <p class="sub-title">WELCOME TO MY DIGITAL SPACE</p>
+                    <h1>Digital. Imagination. Progress.</h1>
+                    <p>
+                        I'm an 2nd year IT student who's still discovering and developing my skills. 
+						As a student, sometimes I face challenges, especially when I'm learning new concepts, 
+						but I see them as opportunities to improve myself.
+                    </p>
+                    <div class="btn-group">
+                        <button class="btn btn-pink" onclick="showPage('portfolio')">View Portfolio →</button>
+                        <button class="btn btn-outline" onclick="showPage('contact')">Get In Touch</button>
+                    </div>
+                </div>
+                <div class="profile-img-frame">
+                    <img src="chi6.jpg" alt="Venice's Profile">
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT ME -->
+        <section id="page-about" class="page-section">
+            <h1>Tech likeaLycs</h1>
+            <p>Discover my background, mindset, and technical toolkit.</p>
+
+            <div class="about-grid">
+                <div class="card">
+                    <h2 class="card-pink-title">Who I Am?</h2>
+                    <p>
+                        Hello! I’m Venice Ashley D. Sarmiento, a 2nd year IT student who loves 
+						technology, design, and creativity. I enjoy exploring graphic design, digital art, 
+						and new technologies, and I’m always excited to learn new things.
+					</p>
+					<p>
+						I'm also interested in traditional art and paintings. And I love to drink coffee everyday,
+						without coffee, my day would be ruined instantly. That's why my teeth is so yellow now LOL. 
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-cyan-title">Technical Skills</h2>
+                    <p>Here are some of the primary technologies and methodologies I use:</p>
+                    <div class="skills-list">
+                        <span class="skill-tag">HTML5 & CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">C & C++</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO -->
+        <section id="page-portfolio" class="page-section">
+            <h1>Selected Works</h1>
+            <p>A collection of web applications and design systems I have engineered.</p>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div>
+                        <img class="portfolio-img" src="Website.jfif">
+                        <div class="portfolio-content">
+                            <h3>Websites</h3>
+                            <p>A website is a collection of related web pages identified by a common domain name and hosted on a web server, accessible via the internet.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <button class="btn btn-outline" onclick="window.open('file:///C:/Users/Administrator/OneDrive/Ching/IT%20221/InformationAboutYourself.html', '_blank')"> View Project 1</button>
+						<button class="btn btn-outline" onclick="window.open('file:///C:/Users/Administrator/OneDrive/Ching/IT%20221/LiveCharacterCounter.html', '_blank')"> View Project 2</button>
+						<button class="btn btn-outline" onclick="window.open('file:///C:/Users/Administrator/OneDrive/Ching/IT%20221/StudentInformationSystem.html', '_blank')"> View Project 3</button>
+						<button class="btn btn-outline" onclick="window.open('file:///C:/Users/Administrator/OneDrive/Ching/IT%20221/ClassAttendance.html', '_blank')"> View Project 4</button>
+						<button class="btn btn-outline" onclick="window.open('file:///C:/Users/Administrator/OneDrive/Ching/IT%20221/StudentRegistrationSystem.html', '_blank')"> View Project 5</button>
+						<button class="btn btn-outline" onclick="window.open('file:///C:/Users/Administrator/OneDrive/Ching/IT%20221/Validation.html', '_blank')"> View Project 6</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section id="page-gallery" class="page-section">
+            <h1>Visual Gallery</h1>
+            <p>My Pictures.</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="chi.jpg">
+                </div>
+                <div class="gallery-item">
+				 <img src="chi1.jpg">
+                </div>
+                <div class="gallery-item">
+				 <img src="chi2.jpg">
+                </div>
+                <div class="gallery-item">
+				 <img src="homechi1.jpg">
+                </div>
+                <div class="gallery-item">
+				 <img src="chi4.jpg">
+                </div>
+                <div class="gallery-item">
+				 <img src="homechii.jpg">
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="page-contact" class="page-section">
+            <div style="text-align: center;">
+                <h1>Get In Touch</h1>
+                <p>Have an idea, project, or opportunity? Drop me a message below.</p>
+            </div>
+
+            <form class="contact-form" onsubmit="alert('Message Sent Successfully!'); return false;">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" placeholder="FirstName LastName" required>
+                </div>
+                <div class="form-group">
+                    <label>Your Email</label>
+                    <input type="email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" placeholder="Project Inquiry" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="5" placeholder="Tell me about your yourself or inquiry..." required></textarea>
+                </div>
+                <button type="submit" class="form-btn">Send Message</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        © 2026 Venice Ashley D. Sarmiento. Where Technology Meets Creativity.
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            var sections = document.querySelectorAll('.page-section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            var navLinks = document.querySelectorAll('nav a');
+            for (var j = 0; j < navLinks.length; j++) {
+                navLinks[j].classList.remove('active');
+            }
+            document.getElementById('page-' + pageId).classList.add('active');
+            document.getElementById('nav-' + pageId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

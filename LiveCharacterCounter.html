@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Character Counter</title>
+  
+  <style>
+  body {
+    background-color: #978090;
+    font-family: Georgia, sans-serif;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 0 20px;
+    color: #5C4B57;
+  }
+  h1 {
+    text-align: center;
+  }
+  label {
+    font-weight: bold;
+    display: center;
+    margin-bottom: 10px;
+  }
+  .textarea-container {
+    font-size: 20px;
+    border: 2px solid #978090;
+    position: relative;
+  }
+  textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 2px solid #978090;
+    border-radius: 6px;
+    resize: vertical;
+  }
+  .char-limit {
+    text-align: right;
+    color: #5C4B57;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  .preview-section {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #C8B4C4;
+    border: 1px solid #C8B4C4;
+    border-radius: 6px;
+  }
+  .preview-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .count-section {
+    margin-top: 25px;
+  }
+  .count-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #5C4B57;
+    padding-bottom: 5px;
+  }
+  .count-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .count-box {
+    border: 1px solid #5C4B57;
+    padding: 8px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #C8B4C4;
+  }
+  .count-box.active {
+    background-color: #C8B4C4;
+    font-weight: bold;
+  }
+  </style>
+</head>
+<body>
+  <h1>Live Character Counter</h1>
+  
+  <div class="textarea-container">
+    <label for="userMessage">Enter your message:</label>
+    <textarea id="userMessage" maxlength="500" placeholder="Enter your Name, Setion, and Address..."></textarea>
+    <div class="char-limit"><span id="charCount">0</span> / 500</div>
+  </div>
+  
+  <div class="preview-section">
+    <div class="preview-title">Live Preview</div>
+    <div id="livePreview"><em>Nothing typed yet...</em></div>
+  </div>
+
+  <div class="count-section">
+    <div class="count-title">Letter Counts (A - Z)</div>
+    <div class="count-grid" id="letterCounts"></div>
+
+    <div class="count-title">Number Counts (0 - 9)</div>
+    <div class="count-grid" id="numberCounts"></div>
+  </div>
+
+  <script>
+    const userMessage = document.getElementById('userMessage');
+    const charCount = document.getElementById('charCount');
+    const livePreview = document.getElementById('livePreview');
+    const letterCountsDiv = document.getElementById('letterCounts');
+    const numberCountsDiv = document.getElementById('numberCounts');
+
+    function updateCounter() {
+      const text = userMessage.value;
+      charCount.textContent = text.length;
+
+      // Live Preview
+      if (text.trim() == '') {
+        livePreview.innerHTML = '<em>Nothing typed yet...</em>';
+      } else {
+        livePreview.textContent = text;
+      }
+      const upperText = text.toUpperCase();
+
+      // Count Letters (A-Z)
+      let letterHTML = '';
+      const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+      for (let i = 0; i < letters.length; i++) {
+        const char = letters[i];
+        let count = 0;
+        
+        for (let j = 0; j < upperText.length; j++) {
+          if (upperText[j] == char) {
+            count++;
+          }
+        }
+        const activeClass = count > 0 ? 'active' : '';
+        letterHTML += `<div class="count-box ${activeClass}">${char} - ${count}</div>`;
+      }
+      letterCountsDiv.innerHTML = letterHTML;
+
+      // Count Numbers (0-9)
+      let numberHTML = '';
+      const numbers = '0123456789';
+
+      for (let i = 0; i < numbers.length; i++) {
+        const num = numbers[i];
+        let count = 0;
+
+        for (let j = 0; j < text.length; j++) {
+          if (text[j] == num) {
+            count++;
+          }
+        }
+        const activeClass = count > 0 ? 'active' : '';
+        numberHTML += `<div class="count-box ${activeClass}">${num} - ${count}</div>`;
+      }
+      numberCountsDiv.innerHTML = numberHTML;
+    }
+
+    // Run when the user types in the textarea
+    userMessage.addEventListener('input', updateCounter);
+    updateCounter();
+  </script>
+
+</body>
+</html>

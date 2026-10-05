@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Attendance</title>
+  
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #A393B6;
+    margin: 0;
+    padding: 20px;
+  }
+  .attendance {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #C4BED2;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  h1 {
+    text-align: center;
+    color: #3A1F3C;
+    margin-top: 0;
+  }
+  .formTable {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #3A1F3C;
+    border-radius: 4px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #604268;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #604268;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  th, td {
+    border: 1px solid #3A1F3C;
+    padding: 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #604268;
+    color: WHITE;
+  }
+  td:first-child, th:first-child {
+    text-align: center;
+    width: 50px;
+  }
+  </style>
+</head>
+<body>
+  
+  <div class="attendance">
+    <h1>Class Attendance</h1>
+    
+    <form id="attendanceForm">
+      <div class="formTable">
+        <input type="text" id="studentName" placeholder="Enter Student Name" required>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+    
+    <h2>Attendance List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Student Name</th>
+          <th>Time Submitted</th>
+        </tr>
+      </thead>
+      <tbody id="attendanceTable">
+      </tbody>
+    </table>
+  </div>
+  <script>
+  let orderNumber = 0;
+  const attendanceForm = document.getElementById('attendanceForm');
+  const studentNameInput = document.getElementById('studentName');
+  const attendanceTable = document.getElementById('attendanceTable');
+  
+  // Listing when submitted
+  attendanceForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const name = studentNameInput.value;
+    orderNumber = orderNumber + 1;
+    const currentTime = new Date().toLocaleTimeString();
+    const newRow = document.createElement('tr');
+    
+    newRow.innerHTML = `
+    <td>${orderNumber}</td>
+    <td>${name}</td>
+    <td>${currentTime}</td>
+    `;
+    attendanceTable.appendChild(newRow);
+    studentNameInput.value = '';
+  });
+  </script>
+
+</body>
+</html>
